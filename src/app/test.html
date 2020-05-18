@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<audio controls id="test123" muted="muted">
+</audio>
+
+
+<p>tesing AWS Polly</p>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.13.min.js"></script>
+<script>
+    AWS.config.region = 'eu-west-1';
+    AWS.config.accessKeyId = 'AKIAJWMRTOKU4JD7VXH1';//WRONG
+    AWS.config.secretAccessKey = '+VlYGVJSi9ZQS12IIxOQgDEcvHK/PhdmhdsXGWiD';
+
+    var polly = new AWS.Polly({apiVersion: '2016-06-10'});
+
+    /*var elementId = "audioElement" + new Date().valueOf().toString();
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute("id", elementId);
+    document.body.appendChild(audioElement);*/
+
+    var params = {
+        OutputFormat: 'mp3', /* required */
+        Text: 'Hello', /* required */
+        VoiceId: 'Joanna', /* required */
+        SampleRate: '22050',
+        TextType: 'text'
+    };
+
+    polly.synthesizeSpeech(params, function(err, data) {
+        if (err) {
+            console.log(err, err.stack);
+        } // an error occurred
+        else   {
+            console.log(data);           // successful response
+            console.log(data.AudioStream);           // successful response
+
+
+            var uInt8Array = new Uint8Array(data.AudioStream);
+            var arrayBuffer = uInt8Array.buffer;
+            var blob = new Blob([arrayBuffer]);
+
+            var url = URL.createObjectURL(blob);
+            var q = document.getElementById('test123');
+            q.src = url;
+
+            q.muted = false;
+            console.log(q.src);
+            //q.autoplay = true;
+          //  q.load();
+            document.querySelector('audio').addEventListener('click', function() {
+                context.resume().then(() => {
+                    console.log('Playback resumed successfully');
+            });
+            });
+            q.play();
+        }
+    });
+
+
+
+
+</script>
+
+</body>
+</html>

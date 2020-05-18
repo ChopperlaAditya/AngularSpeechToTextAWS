@@ -1,0 +1,33 @@
+<div class="container text-center">
+  <div class="col-xs-12" style="margin-bottom: 20px;">
+      <h2>Speech to text using AWS Transcribe</h2>
+  </div>
+
+
+  <div class="col-xs-12" style="margin-bottom: 20px;">
+      <button type="button" class="btn btn-primary" style="margin-right: 20px;" (click)="startRecording()">Start
+          Recording
+      </button>
+      <button type="button" class="btn btn-danger" (click)="closeSocket()">Stop Recording</button>
+  </div>
+
+  <div class="col-xs-12">
+      <p><i>Here is the output:</i> <span> {{ transcription }} </span></p>
+  </div>
+</div>
+<hr/>
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h4>Text to  Speech</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7">
+      <input type="text" style="width: 250px; float: right" class="form-control" [(ngModel)]="text" placeholder="Enter text">
+    </div>
+    <div class="col-5">
+      <button class="btn btn-primary" style="float: left" (click)="speak()">Speak</button>
+    </div>
+  </div>
+</div>
