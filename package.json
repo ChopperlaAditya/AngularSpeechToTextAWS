@@ -24,7 +24,7 @@
     "@aws-sdk/eventstream-marshaller": "^0.1.0-preview.2",
     "@aws-sdk/util-utf8-node": "^0.1.0-preview.1",
     "@ng-bootstrap/ng-bootstrap": "^3.1.0",
-    "ajv": "^6.9.1",
+    "ajv": "^6.12.3",
     "angular-crypto": "^0.0.3",
     "asymmetric-crypto": "^1.0.2",
     "bootstrap": "^4.1.3",
